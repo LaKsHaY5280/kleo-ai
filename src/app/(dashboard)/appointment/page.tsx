@@ -1,10 +1,10 @@
-import { onGetAllBookingsForCurrentUser } from "@/lib/actions/appointment";
 import AllAppointments from "@/components/appointment/all-appointments";
 import InfoBar from "@/components/infobar";
 import Section from "@/components/section-label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { onGetAllBookingsForCurrentUser } from "@/lib/actions/appointment";
 import { currentUser } from "@clerk/nextjs";
 
 type Props = {};
@@ -25,7 +25,8 @@ const Page = async (props: Props) => {
       );
 
     const bookingsExistToday = domainBookings.bookings.filter(
-      (booking) => booking.date.getDate() === today.getDate(),
+      (booking: { date: { getDate: () => number } }) =>
+        booking.date.getDate() === today.getDate(),
     );
 
     return (

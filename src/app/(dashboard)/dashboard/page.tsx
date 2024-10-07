@@ -1,4 +1,3 @@
-import { getUserAppointments } from "@/lib/actions/appointment";
 import {
   getUserBalance,
   getUserClients,
@@ -15,6 +14,7 @@ import EmailIcon from "@/assets/icons/email-icon";
 import PersonIcon from "@/assets/icons/person-icon";
 import { TransactionsIcon } from "@/assets/icons/transactions-icon";
 import { DollarSign } from "lucide-react";
+import { getUserAppointments } from "@/lib/actions/appointment";
 
 type Props = {};
 
