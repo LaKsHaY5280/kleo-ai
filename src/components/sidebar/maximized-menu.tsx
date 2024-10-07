@@ -24,7 +24,7 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
     <div className="flex h-full flex-col px-4 py-3">
       <div className="flex items-center justify-between">
         <Image
-          src="/images/logo.png"
+          src="/images/full_logo.png"
           alt="LOGO"
           sizes="100vw"
           className="animate-fade-in opacity-0 delay-300 fill-mode-forwards"
@@ -56,11 +56,11 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
             icon={<LogOut />}
             onSignOut={onSignOut}
           />
-          <MenuItem
+          {/* <MenuItem
             size="max"
             label="Mobile App"
             icon={<MonitorSmartphone />}
-          />
+          /> */}
         </div>
       </div>
     </div>

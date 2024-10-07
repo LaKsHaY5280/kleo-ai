@@ -3,9 +3,9 @@ import { SIDE_BAR_MENU } from "@/assets/constants/menu";
 import React from "react";
 
 import { LogOut, MonitorSmartphone } from "lucide-react";
-import { MenuLogo } from "@/assets/icons/menu-logo";
 import MenuItem from "./menu-item";
 import DomainMenu from "./domain-menu";
+import Image from "next/image";
 
 type MinMenuProps = {
   onShrink(): void;
@@ -30,7 +30,16 @@ export const MinMenu = ({
   return (
     <div className="flex h-full flex-col items-center p-3">
       <span className="animate-fade-in cursor-pointer opacity-0 delay-300 fill-mode-forwards">
-        <MenuLogo onClick={onShrink} />
+        <Image
+          src="/images/knbg.png"
+          alt="logo"
+          width={100}
+          height={100}
+          className="h-10 w-10"
+          onClick={() => {
+            onShrink();
+          }}
+        />
       </span>
       <div className="flex h-full animate-fade-in flex-col justify-between pt-10 opacity-0 delay-300 fill-mode-forwards">
         <div className="flex flex-col">
@@ -46,11 +55,11 @@ export const MinMenu = ({
             icon={<LogOut />}
             onSignOut={onSignOut}
           />
-          <MenuItem
+          {/* <MenuItem
             size="min"
             label="Mobile App"
             icon={<MonitorSmartphone />}
-          />
+          /> */}
         </div>
       </div>
     </div>

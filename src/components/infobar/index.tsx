@@ -17,27 +17,6 @@ const InfoBar = () => {
   return (
     <div className="mb-8 flex w-full items-center justify-between py-1 pr-3">
       <BreadCrumb />
-      <div className="flex items-center gap-3">
-        <div>
-          <Card className="flex gap-3 rounded-xl px-4 py-3 text-ghost">
-            <Trash />
-            <Star />
-          </Card>
-        </div>
-
-        <Avatar>
-          <AvatarFallback className="bg-orange text-white">
-            <Headphones />
-          </AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarImage src={user.imageUrl} alt={user.firstName || "User"} />
-          <AvatarFallback>
-            {user.firstName ? user.firstName[0] : "Unknown"}
-            {user.lastName ? user.lastName[0] : "User"}
-          </AvatarFallback>
-        </Avatar>
-      </div>
     </div>
   );
 };

@@ -11,19 +11,19 @@ const HighLightBar = () => {
       <div
         className={cn(
           "col-span-1 h-2 rounded-full",
-          currentStep == 1 ? "bg-orange" : "bg-platinum",
+          currentStep == 1 ? "bg-stone-700" : "bg-platinum",
         )}
       ></div>
       <div
         className={cn(
           "col-span-1 h-2 rounded-full",
-          currentStep == 2 ? "bg-orange" : "bg-platinum",
+          currentStep == 2 ? "bg-stone-700" : "bg-platinum",
         )}
       ></div>
       <div
         className={cn(
           "col-span-1 h-2 rounded-full",
-          currentStep == 3 ? "bg-orange" : "bg-platinum",
+          currentStep == 3 ? "bg-stone-700" : "bg-platinum",
         )}
       ></div>
     </div>

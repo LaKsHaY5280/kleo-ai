@@ -4,9 +4,8 @@ import { Calendar } from '@/components/ui/calendar'
 import { Card, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { APPOINTMENT_TIME_SLOTS } from '@/constants/timeslots'
-import { cn } from '@/lib/utils'
-import React from 'react'
+import { APPOINTMENT_TIME_SLOTS } from "@/assets/constants/timeslots";
+import { cn } from "@/lib/utils";
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
 type Props = {

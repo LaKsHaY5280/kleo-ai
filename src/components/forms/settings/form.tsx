@@ -48,7 +48,7 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
       <div className="mt-5 flex flex-col gap-3">
         <div className="flex items-center gap-4">
           <h2 className="text-2xl font-bold">Chatbot Settings</h2>
-          <div className="flex items-center gap-1 rounded-full bg-cream px-3 py-1 text-xs font-bold">
+          <div className="flex items-center gap-1 rounded-full bg-stone-800 px-3 py-1 text-xs font-bold">
             <PremiumBadge />
             Premium
           </div>

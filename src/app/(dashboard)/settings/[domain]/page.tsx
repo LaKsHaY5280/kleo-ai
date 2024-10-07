@@ -9,7 +9,7 @@ type Props = { params: { domain: string } };
 
 const DomainSettingsPage = async ({ params }: Props) => {
   const domain = await onGetCurrentDomainInfo(params.domain);
-  if (!domain) redirect("/dashboard");
+  // if (!domain) redirect("/dashboard");
 
   return (
     <>

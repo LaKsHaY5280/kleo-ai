@@ -16,29 +16,27 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <main className="bg-white">
+    <main>
       <NavBar />
       <section>
         <div className="mt-[80px] flex flex-col items-center justify-center gap-4">
-          <span className="rounded-full bg-orange/20 px-4 py-2 text-sm text-orange">
+          <span className="rounded-full bg-stone-800 px-4 py-2 text-sm text-white">
             An AI powered sales assistant chatbot
           </span>
           <Image
-            src="/images/corinna-ai-logo.png"
+            src="/images/knbg.png"
             width={500}
             height={100}
             alt="Logo"
             className="max-w-lg object-contain"
           />
           <p className="max-w-[500px] text-center">
-            Your AI powered sales assistant! Embed Corinna AI into any website
-            with just a snippet of code!
+            Your AI powered sales assistant! Embed Kleo AI into any website with
+            just a snippet of code!
           </p>
-          <Button className="bg-orange px-4 font-bold text-white">
-            Start For Free
-          </Button>
+          <Button className="px-4 font-bold">Start For Free</Button>
           <Image
-            src="/images/iphonecorinna.png"
+            src="/images/iphonecorinna.jpg"
             width={400}
             height={100}
             alt="Logo"
@@ -53,19 +51,19 @@ export default async function Home() {
           {" you're"} not ready to commit you can get started for free.
         </p>
       </section>
-      <div className="mt-6 flex flex-wrap justify-center gap-4">
+      <div className="mb-10 mt-6 flex flex-wrap justify-center gap-4">
         {pricingCards.map((card) => (
           <Card
             key={card.title}
             className={clsx(
-              "flex w-[300px] flex-col justify-between bg-stone-300",
+              "flex w-[300px] flex-col justify-between bg-stone-800",
               {
                 "border-2 border-primary": card.title === "Unlimited",
               },
             )}
           >
             <CardHeader>
-              <CardTitle className="text-orange">{card.title}</CardTitle>
+              <CardTitle className="text-white">{card.title}</CardTitle>
               <CardDescription>
                 {pricingCards.find((c) => c.title === card.title)?.description}
               </CardDescription>
@@ -87,7 +85,7 @@ export default async function Home() {
               </div>
               <Link
                 href={`/dashbord?plan=${card.title}`}
-                className="w-full rounded-md border-2 border-orange bg-[#f3d299] p-2 text-center font-bold"
+                className="w-full rounded-md border-2 border-stone-600 bg-stone-900 p-2 text-center font-bold"
               >
                 Get Started
               </Link>
@@ -95,13 +93,6 @@ export default async function Home() {
           </Card>
         ))}
       </div>
-
-      <section className="mt-28 flex flex-col items-center justify-center gap-4">
-        <h2 className="text-center text-4xl">News Room</h2>
-        <p className="max-w-lg text-center text-muted-foreground">
-          Explore our insights on AI, technology, and optimizing your business.
-        </p>
-      </section>
     </main>
   );
 }
