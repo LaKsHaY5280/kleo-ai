@@ -114,6 +114,7 @@ export const saveAnswers = async (
 
 export const onGetAllBookingsForCurrentUser = async (clerkId: string) => {
   try {
+    console.log("Fetching bookings for clerkId:", clerkId);
     const bookings = await client.bookings.findMany({
       where: {
         Customer: {
@@ -143,37 +144,38 @@ export const onGetAllBookingsForCurrentUser = async (clerkId: string) => {
       },
     });
 
-    if (bookings) {
-      return {
-        bookings,
-      };
-    }
+    console.log("Fetched bookings:", bookings);
+    return { bookings };
   } catch (error) {
-    console.log(error);
+    console.error("Error in onGetAllBookingsForCurrentUser:", error);
+    return { bookings: [] };
   }
 };
 
 export const getUserAppointments = async () => {
   try {
     const user = await currentUser();
-    if (user) {
-      const bookings = await client.bookings.count({
-        where: {
-          Customer: {
-            Domain: {
-              User: {
-                clerkId: user.id,
-              },
+    if (!user) {
+      console.log("No user found");
+      return 0;
+    }
+    console.log("Fetching appointments for user:", user.id);
+    const bookings = await client.bookings.count({
+      where: {
+        Customer: {
+          Domain: {
+            User: {
+              clerkId: user.id,
             },
           },
         },
-      });
+      },
+    });
 
-      if (bookings) {
-        return bookings;
-      }
-    }
+    console.log("Appointment count:", bookings);
+    return bookings;
   } catch (error) {
-    console.log(error);
+    console.error("Error in getUserAppointments:", error);
+    return 0;
   }
 };

@@ -13,35 +13,48 @@ const Page = async (props: Props) => {
   try {
     const user = await currentUser();
 
-    if (!user) return null;
-    const domainBookings = await onGetAllBookingsForCurrentUser(user.id);
+    if (!user) {
+      console.log("No user found");
+      return null;
+    }
+
+    console.log("Fetching bookings for user:", user.id);
+    const result = await onGetAllBookingsForCurrentUser(user.id);
+    const domainBookings = result?.bookings || [];
+    console.log("Fetched bookings:", domainBookings);
+
     const today = new Date();
 
-    if (!domainBookings)
+    if (domainBookings.length === 0) {
       return (
         <div className="flex w-full justify-center">
           <p>No Appointments</p>
         </div>
       );
+    }
 
-    const bookingsExistToday = domainBookings.bookings.filter(
-      (booking: { date: { getDate: () => number } }) =>
-        booking.date.getDate() === today.getDate(),
-    );
+    const bookingsExistToday = domainBookings.filter((booking) => {
+      const bookingDate = new Date(booking.date);
+      return (
+        bookingDate.getDate() === today.getDate() &&
+        bookingDate.getMonth() === today.getMonth() &&
+        bookingDate.getFullYear() === today.getFullYear()
+      );
+    });
 
     return (
       <>
         <InfoBar />
         <div className="grid h-0 flex-1 grid-cols-1 gap-5 lg:grid-cols-3">
           <div className="overflow-y-auto lg:col-span-2">
-            <AllAppointments bookings={domainBookings?.bookings} />
+            <AllAppointments bookings={domainBookings} />
           </div>
           <div className="col-span-1">
             <Section
               label="Bookings For Today"
               message="All your bookings for today are mentioned below."
             />
-            {bookingsExistToday.length ? (
+            {bookingsExistToday.length > 0 ? (
               bookingsExistToday.map((booking) => (
                 <Card
                   key={booking.id}
@@ -56,9 +69,7 @@ const Page = async (props: Props) => {
                         <p className="text-sm">
                           created
                           <br />
-                          {booking.createdAt.getHours()}{" "}
-                          {booking.createdAt.getMinutes()}{" "}
-                          {booking.createdAt.getHours() > 12 ? "PM" : "AM"}
+                          {new Date(booking.createdAt).toLocaleTimeString()}
                         </p>
                         <p className="text-sm">
                           Domain <br />
@@ -68,7 +79,9 @@ const Page = async (props: Props) => {
                       <Separator orientation="horizontal" />
                       <div className="flex w-full items-center gap-2 p-3">
                         <Avatar>
-                          <AvatarFallback>{booking.email[0]}</AvatarFallback>
+                          <AvatarFallback>
+                            {booking.email?.[0] || "?"}
+                          </AvatarFallback>
                         </Avatar>
                         <p className="text-sm">{booking.email}</p>
                       </div>
