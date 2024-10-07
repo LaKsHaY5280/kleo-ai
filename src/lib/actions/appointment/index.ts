@@ -1,7 +1,10 @@
 "use server";
 
-import { client } from "@/lib/prisma";
+import { client, connectToDatabase } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
+
+// Add this at the beginning of the file
+connectToDatabase();
 
 export const onDomainCustomerResponses = async (customerId: string) => {
   try {
